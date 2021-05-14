@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf8">
+    <title>Array 배열</title>
+</head>
+<body>
+    <h1>배열</h1>
+    <script>
+        //배열 : 여러개의 동일한 종류의 값들로 구성된 자료 구조
+        //배열을 구성하는 각 요소들은 위치값 index로 첨조가 가능하다
+        //변수명 =[값, 값, 값,](해당 방법선호)
+        //변수명 = Array[값, 값, 값,](해당 방법선호)
+        //변수명 =  new Array[값, 값, 값,]
+
+        //성적처리프로그램
+        let names =['혜교', '수지','효리'];
+        let kors = [99,98,99];
+        let engs = Array(54,65,76);
+        let maths = new Array(43,65,76);
+
+        let tots = [0,0,0];
+        let avgs =[0.0,0.0,0.0];
+        let grds = ['가','가','가'];
+
+        for(let i = 0; i < names.length; ++i){
+            tots[i] = kors[i] + engs[i] + maths[i];
+            avgs[i] = tots[i] / 3;
+
+            let x = Math.floor(avgs[i] / 10);
+            switch(x) {
+                case 10:
+                case 9 : grds[i] = '수'; break;
+                case 8 : grds[i] = '우'; break;
+                case 7 : grds[i] = '미'; break;
+                case 6 : grds[i]= '양'; break;
+                default: grds[i] = '가';
+        }
+          let result =  names[i] + "/" + kors[i] +  "/" +engs[i] +  "/" + maths[i] + '<br>' + tots[i] +  "/" + avgs[i].toFixed(1) +  "/" + grds[i];
+            document.write("<p>"+ result + "</p>")
+        }
+    </script>
+
+    <h1>정규표현식</h1>
+    <script>
+        //정규표현식
+        //문자열을 다룰때 좀더 섬세하게 처리하고 싶다면
+        //정규표현식을 이용하는 것이 좋음
+        // ^ : 문자열의 시작을 의미 (^a)
+        // $ : 문자열의 끝을 의미(z$)
+
+        //. : 임의의 한 문자를 의미
+        //+ : 1이상 반복 (.+)
+        //? : 0 또는 1반복 (.?)
+        //* : 0 이상 반복(.*)
+        //{m,n} : 최소 m, 최대 n 반복(.{m,n})ss
+
+        // | : or를 의미 (x|y)
+        //[] : 선택가능한 문자들의 모음 ([abc])
+        //[^] : 선택문자에서 제외 [^xyz]
+        //[-] : 문자열 범위 ([a-zA-Z0-9])
+
+        //특정문자열이 index.html로 시작하는지 또는 html로 끝나는지 검사
+        //정규표현식을 이용해서 검사를 하려면 test함수 사용
+        let fname = 'index.html';
+        let reg1 = /^index/;
+        let reg2 = /html$/;
+
+        document.write(reg1.test(fname)+"<br>")
+        document.write(reg2.test(fname)+"<br>")
+
+        // 전화번호를 확인하는 정규표현식
+        //02-1234-1234 032-1234-1234
+        //010-1234-1234, 011-1234-1234
+        //reg1 = /[0-9][0-9][0-9] - [0-9][0-9][0-9][0-9] - [0-9][0-9][0-9][0-9]/:
+        reg1 = /[0-9]{2,3} - [0-9]{4} - [0-9]{4}/:
+            let data1 = '02-1234-1234';
+            let data2 = '032-1234-1234';
+            let data3 = '010-1234-1234';
+        document.write(reg1.test(data1) + '<br>')
+        document.write(reg1.test(data2) + '<br>')
+        document.write(reg1.test(data3) + '<br>')
+    </script>
+</body>
+</html>
